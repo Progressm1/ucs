@@ -40,22 +40,17 @@ def path_costs(path):
 
 def ucs(start, goal, g):
     frontier = PQueue()
-    # pushing path and cost to pqueue
     frontier.push(start, 0)
 
     while True:
-        # poping path with least cost
         path, cost = frontier.pop()
         print(path + " " + str(cost))
-        # splitting out end node in path
         end = path.split("->")[-1]
         if goal == end:
             break
         for node, weight in g[end].items():
-            # adding edge weight(cost) to total cost
             new_cost = cost + weight
             new_path = path + "->" + node
-            # adding new path and cost to pqueue
             frontier.push(new_path, new_cost)
 
 ucs('Arad', 'Bucharest', path_costs('/home/Paths.txt'))
